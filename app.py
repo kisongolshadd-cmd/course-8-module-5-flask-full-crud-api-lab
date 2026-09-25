@@ -16,6 +16,13 @@ events = [
     Event(1, "Tech Meetup"),
     Event(2, "Python Workshop")
 ]
+@app.route("/")
+def welcome():
+    return jsonify({"message": "Welcome to the Events API"})
+
+@app.route("/events", methods=["GET"])
+def get_events():
+    return jsonify([event.to_dict() for event in events])
 
 @app.route("/events", methods=["POST"])
 def create_event():
